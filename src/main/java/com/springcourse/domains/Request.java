@@ -1,7 +1,9 @@
-package com.springcourse.domain;
+package com.springcourse.domains;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,8 +23,8 @@ import com.springcourse.domain.enums.RequestState;
 import lombok.Data;
 
 @Data
-@Entity(name = "request_stage")
-public class RequestStage implements Serializable {
+@Entity(name = "request")
+public class Request implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,22 +32,24 @@ public class RequestStage implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(columnDefinition = "text")
+	@Column(length = 75, nullable = false)
+	private String subject;
+	
+	@Column(columnDefinition = "text")	
 	private String description;
 	
-	@Column(name = "realization_date", nullable = false)
+	@Column(name = "creation_date", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date realizationDate;
+	private Date creationDate;
 	
 	@Column(length = 12, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private RequestState state;
 	
 	@ManyToOne
-	@JoinColumn(name = "request_id", nullable = false)
-	private Request request;
-	
-	@ManyToOne
 	@JoinColumn(name = "owner_id", nullable = false)
 	private User owner;
+	
+	@OneToMany(mappedBy = "request")
+	private List<RequestStage> stages = new ArrayList<>();
 }
