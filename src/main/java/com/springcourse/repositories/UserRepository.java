@@ -11,6 +11,6 @@ import com.springcourse.domains.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	@Query("SELECT FROM User WHERE email = ?1 AND password = ?2")
-	public Optional<User> login(String email, String password);
+	@Query("SELECT u FROM User u WHERE u.email = ?1 AND u.password = ?2")
+	Optional<User> login(String email, String password);
 }

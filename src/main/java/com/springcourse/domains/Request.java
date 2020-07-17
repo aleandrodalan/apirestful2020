@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -23,7 +24,8 @@ import com.springcourse.domain.enums.RequestState;
 import lombok.Data;
 
 @Data
-@Entity(name = "request")
+@Entity
+@Table(name = "REQUEST")
 public class Request implements Serializable {
 
 	private static final long serialVersionUID = 1L;
