@@ -16,9 +16,13 @@ import javax.persistence.Table;
 
 import com.springcourse.domain.enums.Role;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "USER")
 public class User implements Serializable {

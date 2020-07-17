@@ -18,9 +18,13 @@ import javax.persistence.TemporalType;
 
 import com.springcourse.domain.enums.RequestState;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "REQUEST_STAGE")
 public class RequestStage implements Serializable {
